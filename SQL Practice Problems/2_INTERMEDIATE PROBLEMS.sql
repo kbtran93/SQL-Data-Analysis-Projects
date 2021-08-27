@@ -87,3 +87,21 @@ JOIN products ON products.product_id = order_details.order_id
 ORDER BY
 	orders.order_id,
 	products.product_id;
+
+--28. Customers with no orders
+SELECT
+	customers.customer_id AS Customer_CustomerID,
+	orders.customer_id AS Orders_CustomerID
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id
+WHERE orders.customer_id IS NULL;
+
+--29. Customers with no orders for EmployeeID 4
+SELECT
+	customers.customer_id AS Customer_CustomerID,
+	orders.customer_id AS Orders_CustomerID,
+	orders.employee_id
+FROM customers
+	LEFT JOIN orders ON customers.customer_id = orders.customer_id
+	AND orders.employee_id = 4
+WHERE orders.customer_id IS NULL;
